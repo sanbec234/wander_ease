@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WanderEase - Enter Your Details</title>
+</head>
+
+<body>
+    <style>
+        body {
+        margin: 0;
+        font-family: 'Tenor Sans', sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        }
+
+        header {
+            background-color: #CDAA7F;
+            text-align: left;
+            padding: 20px;
+            color: white;
+        }
+
+        #wander-logo {
+            font-size: 55px;
+        }
+
+        h1 {
+            color: #CDAA7F;
+        }
+
+        #trip-form {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: left;
+        }
+
+        label,
+        select {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #CDAA7F;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #loadingModal {
+            display: none; /* Hide the modal by default */
+        }
+
+        .modal {
+            display: none; /* Hide the modal by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            text-align: center;
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <header>
+        <div id="wander-logo">WanderEase</div>
+    </header>
+
+    <h1>Plan a New Trip</h1>
+
+    <div id="loadingModal" class="modal">
+        <div class="modal-content">
+          <div class="loader"></div>
+          <p>Loading The Best Itinerary For You...</p>
+        </div>
+         <script>
+        // Function to show the loading modal
+        function showLoadingModal() {
+            document.getElementById("loadingModal").style.display = "block"; // Show the modal
+        }
+        // Attach an event listener to the form submit button
+        function hideLoadingModal() {
+            document.getElementById("loadingModal").style.display = "none"; // Hide the modal
+        }
+        document.getElementById("trip-form").addEventListener("submit", function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+            
+            // Show the loading modal
+            showLoadingModal();
+    
+            // Submit the form
+            this.submit();
+        });
+    </script>
+    </div>
+    <form id="trip-form" action="{{url_for('handle_data')}}" method="post">
+        <label for="destination">Which city to?</label>
+        <input type="text" id="destination" name="destination" required>
+
+        <label for="tour-budget">Tour Budget:</label>
+        <select id="tour-budget" name="tour-budget">
+            <option value="Luxurious">Luxurious</option>
+            <option value="Premium">Premium</option>
+            <option value="Affordable">Affordable</option>
+        </select>
+
+        <label for="num-days">Number of days</label>
+        <input type="number" id="num-days" name="num-days" required>
+
+        <input type="submit" value="Submit" onclick="showLoadingModal()"/>
+    </form>
+    <script src="{{url_for('static', filename='form.js')}}"></script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WanderEase - Welcome</title>
+</head>
+<body>
+
+    <header>
+        <div id="wander-logo">WanderEase</div>
+    </header>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Tenor Sans', sans-serif;
+        }
+
+        header {
+            background-color: #CDAA7F;
+            text-align: left;
+            padding: 20px;
+            color: white;
+        }
+
+        #wander-logo {
+            font-size: 55px;
+        }
+
+        #content-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        #left-content {
+            width: 50%;
+        }
+
+        #right-content {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            justify-content: flex-end;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        #start-planning-btn {
+            background-color: #CDAA7F;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+            margin-right: 10px;
+        }
+    </style>
+    <div id="content-container">
+        <div id="left-content">
+            <p>Welcome to WanderEase:
+                <br>
+                <br>
+                Welcome to WanderEase: Your Gateway to Seamless Adventures
+            </p>
+            <br>
+            <br>
+            <br>
+            <p>Your Gateway to Seamless Adventures
+                <br>
+                <br>
+                At WanderEase, we understand that the joy of travel lies not just in the destination, but in the seamless planning and anticipation that precedes it.
+            </p>
+            <br>
+            <br>
+            <br>
+            <a href="{{url_for('startPlan')}}" id="start-planning-btn">Start Planning</a>
+        </div>
+
+        <div id="right-content">
+            <img src="{{url_for('static', filename='adventure.jpeg')}}" alt="Adventure Image">
+            
+        </div>
+    </div>
+
+</body>
+</html>

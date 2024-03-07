@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    font-family: 'Tenor Sans', sans-serif;
+}
+
+header {
+    background-color: #CDAA7F;
+    text-align: left;
+    padding: 20px;
+    color: white;
+}
+
+#wander-logo {
+    font-size: 55px;
+}
+
+#content-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+#left-content {
+    width: 50%;
+}
+
+#right-content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    justify-content: flex-end;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+#start-planning-btn {
+    background-color: #CDAA7F;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}

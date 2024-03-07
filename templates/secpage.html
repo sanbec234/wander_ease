@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Travel Timeline</title>
+</head>
+
+<body>
+  <div class="app-bar">
+    <header>
+      <div id="wander-logo">WanderEase</div>
+    </header>
+  </div>
+  <style>
+
+    .app-bar {
+      position: sticky;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 100%;
+      font-family: "Noto Sans", sans-serif;
+      color: #000000;
+    }
+
+    header {
+      background-color: #cdaa7f;
+      text-align: left;
+      padding: 20px;
+      color: rgb(0, 0, 0);
+    }
+
+    #wander-logo {
+      font-size: 55px;
+      color: #ffffff;
+    }
+
+    h1 {
+      color: #cdaa7f;
+      margin: 40px 0;
+      left: -120px;
+    }
+
+    #timeline {
+      list-style: none;
+      margin: 50px 0 30px 120px;
+      padding-left: 30px;
+      border-left: 8px solid #000000;
+    }
+
+    #timeline li {
+      margin: 40px 0;
+      position: relative;
+    }
+
+    p {
+      margin: 0 0 15px;
+    }
+
+    .spot {
+      margin-top: -10px;
+      top: 50%;
+      left: -120px;
+      font-size: 0.95em;
+      line-height: 20px;
+      position: absolute;
+    }
+
+    .circle {
+      margin-top: -10px;
+      top: 50%;
+      left: -44px;
+      width: 10px;
+      height: 10px;
+      background: #48b379;
+      border: 5px solid #000000;
+      border-radius: 50%;
+      display: block;
+      position: absolute;
+    }
+
+    .content {
+      max-height: 20px;
+      padding: 50px 20px 0;
+      border-color: transparent;
+      position: relative;
+    }
+
+    .content:before,
+    .content:after {
+      content: "";
+      width: 0;
+      height: 0;
+      border: solid transparent;
+      position: absolute;
+      pointer-events: none;
+      right: 100%;
+    }
+
+    .content:before {
+      border-right-color: inherit;
+      border-width: 20px;
+      top: 50%;
+      margin-top: -20px;
+    }
+
+    .content:after {
+      border-right-color: #48b379;
+      border-width: 17px;
+      top: 50%;
+      margin-top: -17px;
+    }
+
+    .content p {
+      max-height: 0;
+      color: transparent;
+      text-align: justify;
+      word-break: break-word;
+      hyphens: auto;
+      overflow: hidden;
+    }
+
+    label {
+      font-size: 1.3em;
+      position: absolute;
+      z-index: 100;
+      cursor: pointer;
+      top: 20px;
+      transition: transform 0.2s linear;
+      padding-left: 5px;
+    }
+
+    .radio {
+      display: none;
+    }
+
+    .radio:checked + .relative label {
+      cursor: auto;
+      transform: translateX(42px);
+    }
+
+    .radio:checked ~ .content {
+      max-height: 180px;
+      border-color: #000000;
+      margin-right: 20px;
+      transform: translateX(20px);
+      transition: max-height 0.4s linear, border-color 0.5s linear,
+        transform 0.2s linear;
+    }
+
+    .radio:checked ~ .content p {
+      max-height: 200px;
+      color: #000000;
+      transition: color 0.3s linear 0.3s;
+    }
+
+  </style>
+
+  <div class="html-body">
+    <form action="{{url_for('spots')}}" method="get"> <!-- Form added with action set to '/spots' -->
+      <h1 class="body-heading">Your Travel Itinerary</h1>
+      <div id="itinerary-container">
+          <div>
+            {% for row in itinerary_data %}
+              <ul>
+                {% for item in row %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% endfor %}
+            </div>
+      </div>
+      <!-- <input type="submit" value="View Spots"> Submit button added -->
+    </form>
+    <script src="{{url_for('static', filename='itinerary.js')}}"></script>
+  </div>
+</body>
+
+</html>
